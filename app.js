@@ -12,12 +12,12 @@ const apiRequest = async () => {
    */
 
   // TODO fill in your own port number 
-  const PORT_NUMBER = "";
+  const PORT_NUMBER = "8010";
 
   const baseUrl = `http://localhost:${PORT_NUMBER}/proxy/api/`
 
   // This endpoint (https://www.fruityvice.com/doc/index.html#api-GET-getAll) returns a list of all the fruits and their info, feel free to play around with different endpoints!
-  const endpoint = "fruit/all"
+  const endpoint = "fruit/family/rosaceae"
 
   // Making a fetch request to an API endpoint
   // Note: a fetch request is an asynchronous operation, and `await` tells the program to wait until the request has been completed before continuing
@@ -44,11 +44,18 @@ const updatePage = async () => {
 
   // TODO: Use either `map` and/or `filter` to extract some data from the array of fruit objects
   // For example, find "name of all fruits whose sugar > 15", 
-
+    const filteredArray = fruitsArray.filter((item) => {
+      return item.nutritions.sugar < 10;
+    })
+    console.log(filteredArray);
   // TODO: Create a new HTML element to display your data 
-
-  // TODO: Append your new element to the page
-
+    const imageGallery = document.getElementById("cs1300-gallery");
+    const createElements = (fruit) => {
+      const fruitElement = document.createElement('div');
+      fruitElement.innerHTML = fruit.name;
+      imageGallery.append(fruitElement);
+    } 
+    filteredArray.map(createElements);
 }
 
 // SAMPLE CODE of how to create and append a new HTML element to the page
